@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siap Jadi Juara Bahasa Inggris Kelas 4 - Brain Adventures</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Fredoka', cursive, sans-serif;
+            background-color: #f1f5f9;
+            min-height: 100vh;
+        }
+        .pop-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+        .card-flip {
+            perspective: 1000px;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card-flip.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 pb-12 flex flex-col min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center space-x-2">
+                <div class="bg-white text-indigo-600 font-extrabold px-3 py-1 rounded-xl text-lg shadow">
+                    🏆 Brain Adventures
+                </div>
+                <span class="text-xs bg-indigo-500/80 text-white px-2.5 py-1 rounded-lg hidden sm:inline-block">Latihan Bahasa Inggris Kelas 4 SD</span>
+            </div>
+
+            <nav class="flex items-center space-x-1 overflow-x-auto py-1 text-sm font-semibold">
+                <button onclick="switchTab('beranda')" id="nav-beranda" class="nav-btn px-3 py-2 rounded-xl bg-white/20 text-white flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-house"></i> Beranda
+                </button>
+                <button onclick="switchTab('materi')" id="nav-materi" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/10 text-white/90 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-book-open"></i> Materi & Spelling
+                </button>
+                <button onclick="switchTab('spelling-game')" id="nav-spelling-game" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/10 text-white/90 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-arrow-down-a-z"></i> Susun Huruf
+                </button>
+                <button onclick="switchTab('game-acak')" id="nav-game-acak" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/10 text-white/90 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-gamepad"></i> Game Acak Gambar
+                </button>
+                <button onclick="switchTab('latihan')" id="nav-latihan" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/10 text-white/90 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-list-check"></i> Latihan Soal Topik
+                </button>
+                <button onclick="switchTab('simulasi')" id="nav-simulasi" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/10 text-white/90 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-stopwatch"></i> Simulasi Ujian
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 mt-6 flex-grow w-full">
+
+        <!-- TAB 1: BERANDA -->
+        <section id="tab-beranda" class="space-y-6">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl p-6 md:p-10 text-white shadow-xl relative overflow-hidden">
+                <div class="relative z-10 space-y-4 max-w-2xl">
+                    <span class="bg-amber-400 text-slate-900 font-extrabold text-xs px-3 py-1.5 rounded-full uppercase tracking-wider">
+                        ⚡ MODUL LATIHAN INTERAKTIF KELAS 4
+                    </span>
+                    <h1 class="text-3xl md:text-5xl font-black leading-tight">
+                        Siap Jadi Juara Bahasa Inggris Kelas 4!
+                    </h1>
+                    <p class="text-indigo-100 text-base md:text-lg">
+                        Dilengkapi <strong>Fitur Audio Suara Pengucapan Native</strong>, <strong>Materi Spelling Bee</strong>, <strong>Matematika Bahasa Inggris</strong>, <strong>Game Acak Gambar Memory</strong>, dan <strong>Simulasi Ujian Real-time</strong>!
+                    </p>
+
+                    <!-- Student Name Input Box -->
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20 space-y-2">
+                        <label for="student-name-input" class="block text-xs font-bold text-amber-300 uppercase tracking-wide">
+                            👤 Masukkan Nama Siswa untuk Mulai Latihan:
+                        </label>
+                        <div class="flex gap-2">
+                            <input type="text" id="student-name-input" placeholder="Contoh: Budi Prasetyo" oninput="saveStudentName(this.value)" class="w-full px-4 py-2.5 rounded-xl bg-white text-slate-800 placeholder-slate-400 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button onclick="switchTab('spelling-game')" class="bg-purple-500 hover:bg-purple-400 text-white font-bold px-5 py-3 rounded-2xl shadow-lg flex items-center gap-2 transform active:scale-95 transition">
+                            <i class="fa-solid fa-spell-check"></i> Game Susun Huruf
+                        </button>
+                        <button onclick="switchTab('game-acak')" class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold px-5 py-3 rounded-2xl shadow-lg flex items-center gap-2 transform active:scale-95 transition">
+                            <i class="fa-solid fa-puzzle-piece"></i> Main Acak Gambar
+                        </button>
+                        <button onclick="switchTab('simulasi')" class="bg-white/20 hover:bg-white/30 backdrop-blur border border-white/40 text-white font-bold px-5 py-3 rounded-2xl flex items-center gap-2 transition">
+                            <i class="fa-solid fa-play"></i> Simulasi Ujian
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                <div onclick="switchTab('materi')" class="bg-white p-4 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md cursor-pointer transition flex flex-col justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Materi Audio</h3>
+                            <p class="text-xs text-slate-500">Audio native & grammar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="switchTab('spelling-game')" class="bg-white p-4 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md cursor-pointer transition flex flex-col justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-fuchsia-100 text-fuchsia-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-arrow-down-a-z"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Susun Huruf</h3>
+                            <p class="text-xs text-slate-500">Spelling Challenge Game.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="switchTab('materi')" class="bg-white p-4 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md cursor-pointer transition flex flex-col justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-font"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Spelling Bee</h3>
+                            <p class="text-xs text-slate-500">Ejaan kata A-Z.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="switchTab('game-acak')" class="bg-white p-4 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md cursor-pointer transition flex flex-col justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-shapes"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Acak Gambar</h3>
+                            <p class="text-xs text-slate-500">Game ingatan memori.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="switchTab('simulasi')" class="bg-white p-4 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md cursor-pointer transition flex flex-col justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Simulasi (3 Nyawa)</h3>
+                            <p class="text-xs text-slate-500">Ujian dengan 3 nyawa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Topics Overview -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 space-y-4">
+                <div class="flex items-center gap-2 text-indigo-600 font-bold text-lg">
+                    <i class="fa-solid fa-compass"></i> Pilih Topik Latihan Soal
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    <button onclick="startTopicQuiz('vocab')" class="p-4 rounded-2xl bg-indigo-50 border border-indigo-100 hover:border-indigo-400 text-left transition flex items-center gap-3">
+                        <span class="text-2xl">🧹</span>
+                        <div>
+                            <p class="font-bold text-slate-800 text-sm">Vocabulary & Routines</p>
+                            <p class="text-xs text-slate-500">Kegiatan, Rumah, & Benda</p>
+                        </div>
+                    </button>
+                    <button onclick="startTopicQuiz('time')" class="p-4 rounded-2xl bg-purple-50 border border-purple-100 hover:border-purple-400 text-left transition flex items-center gap-3">
+                        <span class="text-2xl">⏰</span>
+                        <div>
+                            <p class="font-bold text-slate-800 text-sm">Telling Time & Numbers</p>
+                            <p class="text-xs text-slate-500">Membaca Jam & Matematika</p>
+                        </div>
+                    </button>
+                    <button onclick="startTopicQuiz('grammar')" class="p-4 rounded-2xl bg-emerald-50 border border-emerald-100 hover:border-emerald-400 text-left transition flex items-center gap-3">
+                        <span class="text-2xl">💡</span>
+                        <div>
+                            <p class="font-bold text-slate-800 text-sm">Grammar (Can/Can't, Tenses)</p>
+                            <p class="text-xs text-slate-500">Modal Verb & Present Tense</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB NEW: GAME SUSUN HURUF (SPELLING CHALLENGE) -->
+        <section id="tab-spelling-game" class="hidden space-y-6">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 space-y-6">
+                <div class="flex flex-wrap justify-between items-center gap-4 border-b pb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800">🔤 Game Susun Huruf (Spelling Challenge)</h2>
+                        <p class="text-sm text-slate-500">Susun huruf-huruf acak menjadi kata bahasa Inggris yang tepat sesuai petunjuk gambar dan artinya!</p>
+                    </div>
+                    <div class="flex items-center gap-3 bg-purple-50 px-4 py-2 rounded-2xl border border-purple-100">
+                        <span class="text-xs text-purple-700 font-bold uppercase">Skor Ejaan:</span>
+                        <strong id="spelling-game-score" class="text-purple-700 text-xl font-black">0</strong>
+                    </div>
+                </div>
+
+                <!-- Game Container -->
+                <div id="spelling-game-card" class="max-w-2xl mx-auto bg-purple-50/50 p-6 md:p-8 rounded-3xl border border-purple-100 space-y-6 text-center">
+                    <div class="flex justify-between items-center text-xs font-bold text-slate-500">
+                        <span id="spelling-game-counter" class="bg-white px-3 py-1 rounded-xl shadow-sm">Kata 1 dari 6</span>
+                        <button onclick="speakCurrentSpellingTarget()" class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-volume-high"></i> Dengar Bunyi Kata
+                        </button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div id="spelling-target-icon" class="text-6xl my-2 animate-bounce">🚪</div>
+                        <p id="spelling-target-hint" class="text-lg font-bold text-purple-900">Arti: Lemari</p>
+                    </div>
+
+                    <!-- Selected Letters Slots (Answer Box) -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">Jawaban Kamu:</p>
+                        <div id="spelling-answer-slots" class="flex flex-wrap justify-center gap-2 min-h-[56px] p-3 bg-white rounded-2xl border-2 border-dashed border-purple-300 items-center">
+                            <!-- Selected letters injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Shuffled Scrambled Letters Pool -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">Pilih Huruf di Bawah Ini:</p>
+                        <div id="spelling-letter-pool" class="flex flex-wrap justify-center gap-2">
+                            <!-- Shuffled letters injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Feedback message & Control Buttons -->
+                    <div id="spelling-game-feedback" class="hidden p-4 rounded-2xl text-sm font-bold"></div>
+
+                    <div class="flex justify-center gap-3 pt-2">
+                        <button onclick="resetCurrentSpellingAnswer()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-5 py-2.5 rounded-xl text-sm transition">
+                            <i class="fa-solid fa-arrow-rotate-left"></i> Hapus
+                        </button>
+                        <button onclick="checkSpellingAnswer()" id="spelling-check-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow transition">
+                            <i class="fa-solid fa-circle-check"></i> Cek Jawaban
+                        </button>
+                        <button onclick="nextSpellingWord()" id="spelling-next-btn" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow transition">
+                            Lanjut Kata Berikutnya ➔
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: MATERI & SPELLING BEE -->
+        <section id="tab-materi" class="hidden space-y-6">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 space-y-6">
+                <div class="flex justify-between items-center border-b pb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800">📚 Materi Belajar, Suara Audio & Spelling Bee</h2>
+                        <p class="text-sm text-slate-500">Klik tombol audio untuk mendengarkan ejaan dan pengucapan asli dalam bahasa Inggris!</p>
+                    </div>
+                </div>
+
+                <!-- Math & Preposition Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Math Terms -->
+                    <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200 space-y-3">
+                        <h3 class="font-bold text-amber-900 flex items-center gap-2">
+                            <i class="fa-solid fa-calculator"></i> Matematika Dasar (Math Terms)
+                        </h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between items-center p-2 bg-white rounded-xl shadow-sm">
+                                <span>➕ <strong>Addition:</strong> 5 + 3 = 8 (Five plus three equals eight)</span>
+                                <button onclick="speakText('Five plus three equals eight')" class="text-indigo-600 hover:text-indigo-800 px-2 py-1"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-white rounded-xl shadow-sm">
+                                <span>➖ <strong>Subtraction:</strong> 10 - 4 = 6 (Ten minus four equals six)</span>
+                                <button onclick="speakText('Ten minus four equals six')" class="text-indigo-600 hover:text-indigo-800 px-2 py-1"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-white rounded-xl shadow-sm">
+                                <span>✖️ <strong>Multiplication:</strong> 3 x 3 = 9 (Three times three equals nine)</span>
+                                <button onclick="speakText('Three times three equals nine')" class="text-indigo-600 hover:text-indigo-800 px-2 py-1"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Telling Time -->
+                    <div class="p-5 rounded-2xl bg-indigo-50 border border-indigo-200 space-y-3">
+                        <h3 class="font-bold text-indigo-900 flex items-center gap-2">
+                            <i class="fa-regular fa-clock"></i> Membaca Jam (Telling Time)
+                        </h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between items-center p-2 bg-white rounded-xl shadow-sm">
+                                <span>07:00 ➔ It is seven o'clock</span>
+                                <button onclick="speakText('It is seven o clock')" class="text-indigo-600 hover:text-indigo-800 px-2 py-1"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-white rounded-xl shadow-sm">
+                                <span>06:30 ➔ It is half past six</span>
+                                <button onclick="speakText('It is half past six')" class="text-indigo-600 hover:text-indigo-800 px-2 py-1"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <div class="flex justify-between items-center p-2 bg-white rounded-xl shadow-sm">
+                                <span>08:15 ➔ It is a quarter past eight</span>
+                                <button onclick="speakText('It is a quarter past eight')" class="text-indigo-600 hover:text-indigo-800 px-2 py-1"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Alphabet Spelling -->
+                <div class="p-5 rounded-2xl bg-purple-50 border border-purple-200 space-y-4">
+                    <h3 class="font-bold text-purple-900 flex items-center gap-2 text-lg">
+                        <i class="fa-solid fa-spell-check"></i> Ejaan Alfabet (Alphabet Phonics A - Z)
+                    </h3>
+                    <p class="text-xs text-purple-700">Klik huruf untuk mendengarkan pengucapan ejaan bahasa Inggris:</p>
+                    <div id="alphabet-grid" class="grid grid-cols-6 sm:grid-cols-9 md:grid-cols-13 gap-2">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <!-- SPELLING BEE PRACTICE MODULE -->
+                <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-emerald-900 flex items-center gap-2 text-lg">
+                            <i class="fa-solid fa-bug"></i> Modul Latihan Spelling Bee (Mengeja Kata)
+                        </h3>
+                        <span class="text-xs bg-emerald-200 text-emerald-900 font-bold px-3 py-1 rounded-full">Interactive Practice</span>
+                    </div>
+                    <p class="text-xs text-emerald-800">Dengarkan kata, lalu klik tombol "Eja Kata Ini" untuk mendengarkan setiap huruf dieja secara berturut-turut!</p>
+
+                    <div id="spelling-words-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-2">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: GAME ACAK GAMBAR (MEMORY MATCH GAME) -->
+        <section id="tab-game-acak" class="hidden space-y-6">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 space-y-6">
+                <div class="flex flex-wrap justify-between items-center gap-4 border-b pb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800">🧩 Game Memory Acak Gambar & Kosakata</h2>
+                        <p class="text-sm text-slate-500">Cocokkan gambar benda/kegiatan dengan kata Bahasa Inggris yang tepat untuk melatih daya ingat!</p>
+                    </div>
+                    <div class="flex items-center gap-4 bg-indigo-50 px-4 py-2 rounded-2xl border border-indigo-100">
+                        <div class="text-sm"><span class="text-slate-500">Percobaan:</span> <strong id="memory-moves" class="text-indigo-600 text-lg">0</strong></div>
+                        <button onclick="initMemoryGame()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs px-3 py-2 rounded-xl transition">
+                            <i class="fa-solid fa-rotate-right"></i> Acak Ulang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Memory Game Grid -->
+                <div id="memory-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                    <!-- Cards injected via JavaScript -->
+                </div>
+
+                <!-- Victory Popup banner -->
+                <div id="memory-win-msg" class="hidden bg-emerald-100 border border-emerald-300 text-emerald-900 p-4 rounded-2xl text-center space-y-2">
+                    <p class="font-bold text-lg">🎉 Luar Biasa! Kamu Berhasil Menemukan Semua Pasangan!</p>
+                    <p class="text-sm">Daya ingatmu sangat hebat untuk persiapan latihan Bahasa Inggris!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: LATIHAN SOAL TOPIK -->
+        <section id="tab-latihan" class="hidden space-y-6">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 space-y-6">
+                <div class="flex justify-between items-center border-b pb-4">
+                    <h2 class="text-2xl font-bold text-slate-800">📝 Latihan Soal Berdasarkan Topik</h2>
+                </div>
+
+                <div id="topic-selector" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <button onclick="startTopicQuiz('vocab')" class="p-4 rounded-2xl border-2 border-indigo-500 bg-indigo-50 font-bold text-indigo-800 text-center">
+                        Part 1: Vocabulary & Daily Activities
+                    </button>
+                    <button onclick="startTopicQuiz('time')" class="p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 font-bold text-slate-700 text-center">
+                        Part 2: Grammar & Telling Time
+                    </button>
+                    <button onclick="startTopicQuiz('reading')" class="p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 font-bold text-slate-700 text-center">
+                        Part 3: Reading Comprehension
+                    </button>
+                </div>
+
+                <!-- Quiz Area -->
+                <div id="quiz-area" class="space-y-4 pt-2">
+                    <div class="flex justify-between items-center text-sm font-bold text-slate-500">
+                        <span id="quiz-progress">Soal 1 dari 3</span>
+                        <span id="quiz-score-badge" class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-xl">Skor: 0</span>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-indigo-50/60 border border-indigo-100">
+                        <p id="quiz-question-text" class="text-lg font-medium text-slate-800 leading-relaxed"></p>
+                    </div>
+
+                    <div id="quiz-options-container" class="space-y-2"></div>
+
+                    <!-- Feedback message for topic quiz -->
+                    <div id="quiz-feedback" class="hidden p-4 rounded-2xl text-sm font-medium"></div>
+
+                    <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-2xl transition">
+                        Lanjut ke Soal Berikutnya ➔
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: SIMULASI UJIAN -->
+        <section id="tab-simulasi" class="hidden space-y-6">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 space-y-6">
+                <!-- Intro Banner -->
+                <div id="sim-intro" class="text-center space-y-4 py-6 max-w-xl mx-auto">
+                    <div class="inline-block bg-amber-100 text-amber-800 px-4 py-1.5 rounded-full font-bold text-xs uppercase tracking-wider">
+                        ⏱️ Mode Latihan Simulasi Ujian (3 Nyawa)
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-slate-800">Simulasi Ujian Bahasa Inggris</h2>
+                    <p class="text-slate-600 text-sm">
+                        Latihan ujian 20 menit lengkap dengan <strong>3 Nyawa (Hearts)</strong>. Jika menjawab salah, nyawa berkurang 1 dan jawaban yang benar akan langsung ditampilkan!
+                    </p>
+
+                    <!-- Student Name Input inside Simulation -->
+                    <div class="p-4 bg-amber-50/80 rounded-2xl border border-amber-200 text-left space-y-2">
+                        <label for="sim-input-student-name" class="block text-xs font-bold text-amber-900 uppercase tracking-wide">
+                            👤 Nama Siswa Pengerja Ujian:
+                        </label>
+                        <input type="text" id="sim-input-student-name" placeholder="Ketik nama siswa..." oninput="saveStudentName(this.value)" class="w-full px-4 py-2.5 rounded-xl bg-white text-slate-800 placeholder-slate-400 text-sm font-bold border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    </div>
+
+                    <button onclick="startSimulasi()" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-extrabold text-lg px-8 py-4 rounded-2xl shadow-lg transform active:scale-95 transition">
+                        🚀 Mulai Simulasi Sekarang!
+                    </button>
+                </div>
+
+                <!-- Simulation Active Area -->
+                <div id="sim-active" class="hidden space-y-6">
+                    <div class="flex justify-between items-center bg-slate-900 text-white p-4 rounded-2xl">
+                        <div>
+                            <p class="text-xs text-slate-400">Sisa Waktu Simulasi:</p>
+                            <p id="sim-timer" class="text-2xl font-black text-amber-400">20:00</p>
+                        </div>
+                        <!-- Lives / Hearts Bar -->
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400 font-bold uppercase mb-0.5">Sisa Nyawa:</p>
+                            <div id="sim-lives-container" class="text-xl tracking-wider">
+                                ❤️ ❤️ ❤️
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p id="sim-counter" class="text-xs text-slate-400">Soal 1 dari 8</p>
+                            <p class="text-xs font-bold text-indigo-300">Siswa: <span id="sim-active-student-name">Siswa</span></p>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-indigo-50/50 border border-indigo-100">
+                        <p id="sim-question-text" class="text-lg font-medium text-slate-800"></p>
+                    </div>
+
+                    <div id="sim-options-container" class="space-y-3"></div>
+
+                    <!-- Enhanced Feedback in Simulation if answer is wrong -->
+                    <div id="sim-feedback-box" class="hidden p-4 rounded-2xl text-sm font-bold border space-y-1"></div>
+
+                    <button id="sim-next-btn" onclick="nextSimQuestion()" class="hidden w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-2xl transition shadow">
+                        Lanjut ke Soal Berikutnya ➔
+                    </button>
+                </div>
+
+                <!-- Simulation Result Area -->
+                <div id="sim-result" class="hidden text-center space-y-6 py-6">
+                    <div id="sim-result-icon" class="text-6xl animate-bounce">🏆</div>
+                    <h2 id="sim-result-title" class="text-3xl font-bold text-slate-800">Hasil Simulasi Latihan Ujian</h2>
+
+                    <div class="bg-indigo-50 border border-indigo-200 rounded-3xl p-6 max-w-sm mx-auto space-y-3">
+                        <div>
+                            <p class="text-xs text-slate-500 uppercase font-bold">Nama Siswa:</p>
+                            <p id="sim-result-student-name" class="text-xl font-black text-slate-800">-</p>
+                        </div>
+                        <hr class="border-indigo-200">
+                        <div>
+                            <p class="text-xs text-slate-500 uppercase font-bold">Skor Akhir:</p>
+                            <p id="sim-final-score" class="text-4xl font-black text-indigo-600">0 / 100</p>
+                        </div>
+                        <p id="sim-eval-text" class="text-sm font-semibold text-slate-700 pt-2"></p>
+                    </div>
+
+                    <button onclick="startSimulasi()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3 rounded-2xl shadow transition">
+                        🔄 Coba Simulasi Lagi
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="mt-auto bg-slate-900 text-slate-400 py-6 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 text-center space-y-2">
+            <p class="text-sm font-medium text-slate-300">
+                Aplikasi Latihan & Game Interaktif Bahasa Inggris Kelas 4 SD
+            </p>
+            <p class="text-xs text-amber-400 font-bold">
+                Dikembangkan oleh Giga Inovation | WA: 081329200985
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Global State ---
+        let studentName = localStorage.getItem('student_name') || "Siswa";
+
+        function saveStudentName(val) {
+            studentName = val.trim() || "Siswa";
+            localStorage.setItem('student_name', studentName);
+            updateStudentNameDisplays();
+        }
+
+        function updateStudentNameDisplays() {
+            // Update input box on home tab
+            const homeInput = document.getElementById('student-name-input');
+            if (homeInput && homeInput.value !== studentName) {
+                homeInput.value = studentName === "Siswa" ? "" : studentName;
+            }
+            // Update editable input box on simulation tab
+            const simInput = document.getElementById('sim-input-student-name');
+            if (simInput && simInput.value !== studentName) {
+                simInput.value = studentName === "Siswa" ? "" : studentName;
+            }
+            // Update displays
+            const simActiveName = document.getElementById('sim-active-student-name');
+            if (simActiveName) simActiveName.textContent = studentName;
+        }
+
+        // --- Speech Synthesis Helper ---
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop ongoing speech
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85; // Clear pace for grade 4 learners
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Spell word letter-by-letter
+        function spellWord(word) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const letters = word.toUpperCase().split('').join(', ');
+                const utterance = new SpeechSynthesisUtterance(`${word}. It is spelled: ${letters}`);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.75;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // --- Navigation Tab Switcher ---
+        function switchTab(tabName) {
+            const tabs = ['beranda', 'materi', 'spelling-game', 'game-acak', 'latihan', 'simulasi'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                const btn = document.getElementById(`nav-${t}`);
+                if (t === tabName) {
+                    if (el) el.classList.remove('hidden');
+                    if (btn) {
+                        btn.className = "nav-btn px-3 py-2 rounded-xl bg-white/20 text-white flex items-center gap-1.5 font-bold";
+                    }
+                } else {
+                    if (el) el.classList.add('hidden');
+                    if (btn) {
+                        btn.className = "nav-btn px-3 py-2 rounded-xl hover:bg-white/10 text-white/90 flex items-center gap-1.5 font-medium";
+                    }
+                }
+            });
+
+            if (tabName === 'game-acak') {
+                initMemoryGame();
+            } else if (tabName === 'spelling-game') {
+                initSpellingGame();
+            }
+            updateStudentNameDisplays();
+        }
+
+        // --- Render Alphabet Grid ---
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        const alphabetContainer = document.getElementById('alphabet-grid');
+        alphabet.forEach(letter => {
+            const btn = document.createElement('button');
+            btn.className = "p-2 bg-white rounded-xl border border-purple-200 text-purple-800 font-bold hover:bg-purple-600 hover:text-white transition shadow-sm text-center text-sm";
+            btn.textContent = letter;
+            btn.onclick = () => speakText(letter);
+            alphabetContainer.appendChild(btn);
+        });
+
+        // --- Render Spelling Bee Module Words ---
+        const spellingBeeList = [
+            { word: "CUPBOARD", meaning: "Lemari", icon: "🚪" },
+            { word: "LIBRARY", meaning: "Perpustakaan", icon: "📚" },
+            { word: "CYCLING", meaning: "Bersepeda", icon: "🚲" },
+            { word: "BEDROOM", meaning: "Kamar Tidur", icon: "🛏️" },
+            { word: "QUARTER", meaning: "Seperempat (15 menit)", icon: "⏱️" },
+            { word: "SWEEPING", meaning: "Menyapu", icon: "🧹" }
+        ];
+
+        const spellingContainer = document.getElementById('spelling-words-container');
+        spellingBeeList.forEach(item => {
+            const card = document.createElement('div');
+            card.className = "bg-white p-4 rounded-xl border border-emerald-100 shadow-sm space-y-2 flex flex-col justify-between";
+            card.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl">${item.icon}</span>
+                    <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full">${item.meaning}</span>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-slate-800 text-lg tracking-wide">${item.word}</h4>
+                </div>
+                <div class="flex gap-2 pt-1">
+                    <button onclick="speakText('${item.word}')" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-volume-high"></i> Bunyi
+                    </button>
+                    <button onclick="spellWord('${item.word}')" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-font"></i> Eja Huruf
+                    </button>
+                </div>
+            `;
+            spellingContainer.appendChild(card);
+        });
+
+        // --- GAME SUSUN HURUF (SPELLING CHALLENGE MODULE) ---
+        const spellingWordsData = [
+            { word: "CUPBOARD", hint: "Arti: Lemari Benda / Pakaian", icon: "🚪" },
+            { word: "LIBRARY", hint: "Arti: Perpustakaan", icon: "📚" },
+            { word: "CYCLING", hint: "Arti: Bersepeda", icon: "🚲" },
+            { word: "SWEEPING", hint: "Arti: Menyapu Lantai", icon: "🧹" },
+            { word: "QUARTER", hint: "Arti: Seperempat Jam (15 menit)", icon: "⏱️" },
+            { word: "BEDROOM", hint: "Arti: Kamar Tidur", icon: "🛏️" }
+        ];
+
+        let spellingCurrentIdx = 0;
+        let spellingScore = 0;
+        let selectedLettersArr = [];
+        let poolLettersArr = [];
+
+        function initSpellingGame() {
+            spellingCurrentIdx = 0;
+            spellingScore = 0;
+            document.getElementById('spelling-game-score').textContent = spellingScore;
+            loadSpellingWord();
+        }
+
+        function loadSpellingWord() {
+            const item = spellingWordsData[spellingCurrentIdx];
+            document.getElementById('spelling-game-counter').textContent = `Kata ${spellingCurrentIdx + 1} dari ${spellingWordsData.length}`;
+            document.getElementById('spelling-target-icon').textContent = item.icon;
+            document.getElementById('spelling-target-hint').textContent = item.hint;
+
+            document.getElementById('spelling-game-feedback').classList.add('hidden');
+            document.getElementById('spelling-check-btn').classList.remove('hidden');
+            document.getElementById('spelling-next-btn').classList.add('hidden');
+
+            selectedLettersArr = [];
+            
+            // Create shuffled letter pool
+            const lettersArr = item.word.split('').map((char, index) => ({ char, id: index }));
+            poolLettersArr = lettersArr.sort(() => 0.5 - Math.random());
+
+            renderSpellingBoard();
+        }
+
+        function renderSpellingBoard() {
+            const slotsContainer = document.getElementById('spelling-answer-slots');
+            const poolContainer = document.getElementById('spelling-letter-pool');
+
+            slotsContainer.innerHTML = '';
+            poolContainer.innerHTML = '';
+
+            // Render selected letters
+            if (selectedLettersArr.length === 0) {
+                slotsContainer.innerHTML = `<span class="text-slate-400 text-xs italic font-medium">Klik huruf di bawah untuk menyusun kata...</span>`;
+            } else {
+                selectedLettersArr.forEach((item, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-10 h-10 bg-purple-600 text-white font-extrabold rounded-xl shadow text-lg transform active:scale-95 transition";
+                    btn.textContent = item.char;
+                    btn.onclick = () => removeLetterFromAnswer(index);
+                    slotsContainer.appendChild(btn);
+                });
+            }
+
+            // Render available pool letters
+            poolLettersArr.forEach((item) => {
+                const btn = document.createElement('button');
+                if (item.used) {
+                    btn.className = "w-10 h-10 bg-slate-200 text-slate-400 font-bold rounded-xl text-lg cursor-not-allowed opacity-50";
+                    btn.disabled = true;
+                    btn.textContent = item.char;
+                } else {
+                    btn.className = "w-10 h-10 bg-amber-400 hover:bg-amber-300 text-slate-900 font-extrabold rounded-xl shadow-md text-lg transform active:scale-95 transition";
+                    btn.textContent = item.char;
+                    btn.onclick = () => selectLetterForAnswer(item);
+                }
+                poolContainer.appendChild(btn);
+            });
+        }
+
+        function selectLetterForAnswer(item) {
+            item.used = true;
+            selectedLettersArr.push(item);
+            renderSpellingBoard();
+        }
+
+        function removeLetterFromAnswer(index) {
+            const removedItem = selectedLettersArr.splice(index, 1)[0];
+            const poolItem = poolLettersArr.find(p => p.id === removedItem.id);
+            if (poolItem) poolItem.used = false;
+            renderSpellingBoard();
+        }
+
+        function resetCurrentSpellingAnswer() {
+            selectedLettersArr = [];
+            poolLettersArr.forEach(p => p.used = false);
+            renderSpellingBoard();
+        }
+
+        function speakCurrentSpellingTarget() {
+            const item = spellingWordsData[spellingCurrentIdx];
+            speakText(item.word);
+        }
+
+        function checkSpellingAnswer() {
+            const item = spellingWordsData[spellingCurrentIdx];
+            const currentGuess = selectedLettersArr.map(i => i.char).join('');
+            const fb = document.getElementById('spelling-game-feedback');
+            fb.classList.remove('hidden');
+
+            if (currentGuess === item.word) {
+                spellingScore += 10;
+                document.getElementById('spelling-game-score').textContent = spellingScore;
+                fb.className = "p-4 rounded-2xl text-sm font-bold bg-emerald-100 text-emerald-800 border border-emerald-200";
+                fb.innerHTML = `🎉 Hebat! Susunan kata <strong>${item.word}</strong> Benar!`;
+                speakText(item.word);
+
+                document.getElementById('spelling-check-btn').classList.add('hidden');
+                document.getElementById('spelling-next-btn').classList.remove('hidden');
+            } else {
+                fb.className = "p-4 rounded-2xl text-sm font-bold bg-rose-100 text-rose-800 border border-rose-200";
+                fb.innerHTML = `❌ Coba lagi! Susunan kata masih belum pas. (Ejaan Benar: <strong>${item.word}</strong>)`;
+            }
+        }
+
+        function nextSpellingWord() {
+            spellingCurrentIdx++;
+            if (spellingCurrentIdx < spellingWordsData.length) {
+                loadSpellingWord();
+            } else {
+                alert(`Selamat! Game Susun Huruf selesai. Skor Total ${studentName}: ${spellingScore}`);
+                initSpellingGame();
+            }
+        }
+
+        // --- Game Acak Gambar (Memory Match) ---
+        const memoryItems = [
+            { id: 1, label: "Washing dishes", icon: "🧼", sound: "Washing the dishes" },
+            { id: 2, label: "Cupboard", icon: "🚪", sound: "Cupboard" },
+            { id: 3, label: "Library", icon: "📚", sound: "Library" },
+            { id: 4, label: "Cycling", icon: "🚲", sound: "Cycling" },
+            { id: 5, label: "Clock / Time", icon: "⏰", sound: "Clock" },
+            { id: 6, label: "Flying Bird", icon: "🕊️", sound: "Bird flying" }
+        ];
+
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+
+        function initMemoryGame() {
+            const grid = document.getElementById('memory-grid');
+            grid.innerHTML = '';
+            document.getElementById('memory-win-msg').classList.add('hidden');
+            moves = 0;
+            matchedPairs = 0;
+            document.getElementById('memory-moves').textContent = moves;
+
+            let deck = [];
+            memoryItems.forEach(item => {
+                deck.push({ ...item, type: 'icon', uid: Math.random() });
+                deck.push({ ...item, type: 'text', uid: Math.random() });
+            });
+            deck.sort(() => 0.5 - Math.random());
+
+            deck.forEach((card) => {
+                const cardEl = document.createElement('div');
+                cardEl.className = "card-flip h-28 cursor-pointer";
+                cardEl.innerHTML = `
+                    <div class="card-inner w-full h-full">
+                        <div class="card-front bg-indigo-600 text-white font-bold text-2xl shadow-md border-2 border-indigo-400">
+                            ❓
+                        </div>
+                        <div class="card-back bg-amber-50 border-2 border-amber-300 text-slate-800 p-2 text-center font-bold text-sm shadow-md flex flex-col items-center justify-center">
+                            ${card.type === 'icon' ? `<span class="text-3xl">${card.icon}</span>` : `<span class="text-xs text-indigo-700">${card.label}</span>`}
+                        </div>
+                    </div>
+                `;
+                cardEl.onclick = () => handleCardClick(cardEl, card);
+                grid.appendChild(cardEl);
+            });
+        }
+
+        function handleCardClick(cardEl, card) {
+            if (flippedCards.length >= 2 || cardEl.classList.contains('flipped') || cardEl.classList.contains('matched')) return;
+
+            cardEl.classList.add('flipped');
+            speakText(card.sound);
+            flippedCards.push({ cardEl, card });
+
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('memory-moves').textContent = moves;
+                const [c1, c2] = flippedCards;
+
+                if (c1.card.id === c2.card.id) {
+                    c1.cardEl.classList.add('matched');
+                    c2.cardEl.classList.add('matched');
+                    flippedCards = [];
+                    matchedPairs++;
+                    if (matchedPairs === memoryItems.length) {
+                        setTimeout(() => {
+                            document.getElementById('memory-win-msg').classList.remove('hidden');
+                        }, 500);
+                    }
+                } else {
+                    setTimeout(() => {
+                        c1.cardEl.classList.remove('flipped');
+                        c2.cardEl.classList.remove('flipped');
+                        flippedCards = [];
+                    }, 1000);
+                }
+            }
+        }
+
+        // --- Topic Questions Bank ---
+        const topicQuestionBank = {
+            vocab: [
+                {
+                    q: "Aisyah is in the kitchen. She is helping her mother to wash the plates. What is she doing?",
+                    opts: ["She is sweeping the floor.", "She is washing the dishes.", "She is cooking fried rice.", "She is watering the flowers."],
+                    ans: 1,
+                    exp: "Washing the dishes artinya mencuci piring."
+                },
+                {
+                    q: "There is a big _______ in the living room. We use it to keep our clothes neat.",
+                    opts: ["Cupboard", "Bookshelf", "Sofa", "Refrigerator"],
+                    ans: 0,
+                    exp: "Cupboard adalah lemari pakaian atau tempat menyimpan benda."
+                },
+                {
+                    q: "The school library is _______ the teacher's room and the computer lab.",
+                    opts: ["Behind", "Next to", "Between", "In front of"],
+                    ans: 2,
+                    exp: "Between berarti terletak di antara dua ruangan."
+                }
+            ],
+            time: [
+                {
+                    q: "Dani: 'What time do you usually have breakfast?'\nRiko: 'I usually have breakfast at 06.30.' How do you say 06.30 in English?",
+                    opts: ["It is quarter past six.", "It is half past six.", "It is six o'clock.", "It is half past seven."],
+                    ans: 1,
+                    exp: "Half past six berarti jam 6 lebih 30 menit."
+                },
+                {
+                    q: "A bird can fly high in the sky, but a cat _______ fly.",
+                    opts: ["Can", "Cannot", "Is", "Do"],
+                    ans: 1,
+                    exp: "Cannot / Can't berarti tidak bisa."
+                },
+                {
+                    q: "Joshua and Made _______ football in the school yard every Tuesday afternoon.",
+                    opts: ["Plays", "Playing", "Play", "Played"],
+                    ans: 2,
+                    exp: "Subjek jamak (Joshua & Made) menggunakan kata kerja dasar 'Play'."
+                }
+            ],
+            reading: [
+                {
+                    q: "Read the text: 'Made is a fourth-grade student. His favorite hobby is cycling. Every Sunday morning, Made rides his bicycle with his father.' What is Made's favorite hobby?",
+                    opts: ["Swimming", "Playing football", "Cycling", "Running"],
+                    ans: 2,
+                    exp: "Di teks tertulis: His favorite hobby is cycling."
+                },
+                {
+                    q: "Who does Made go cycling with?",
+                    opts: ["His mother", "His father", "His brother", "His friend"],
+                    ans: 1,
+                    exp: "Di teks tertulis: He usually goes cycling with his father."
+                }
+            ]
+        };
+
+        let currentTopic = 'vocab';
+        let currentTopicIdx = 0;
+        let topicScore = 0;
+
+        function startTopicQuiz(topicKey) {
+            switchTab('latihan');
+            currentTopic = topicKey;
+            currentTopicIdx = 0;
+            topicScore = 0;
+            loadTopicQuestion();
+        }
+
+        function loadTopicQuestion() {
+            const questions = topicQuestionBank[currentTopic];
+            const q = questions[currentTopicIdx];
+
+            document.getElementById('quiz-progress').textContent = `Soal ${currentTopicIdx + 1} dari ${questions.length}`;
+            document.getElementById('quiz-score-badge').textContent = `Skor: ${topicScore}`;
+            document.getElementById('quiz-question-text').textContent = q.q;
+
+            const optsContainer = document.getElementById('quiz-options-container');
+            optsContainer.innerHTML = '';
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+
+            q.opts.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 rounded-xl border border-slate-200 hover:bg-indigo-50 font-medium text-slate-700 transition flex justify-between items-center";
+                btn.innerHTML = `<span><strong class="text-indigo-600 mr-2">${String.fromCharCode(65 + idx)}.</strong> ${opt}</span>`;
+                btn.onclick = () => selectTopicAns(idx, q, btn);
+                optsContainer.appendChild(btn);
+            });
+        }
+
+        function selectTopicAns(selectedIdx, q, btnEl) {
+            const fb = document.getElementById('quiz-feedback');
+            fb.classList.remove('hidden');
+
+            const allBtns = document.querySelectorAll('#quiz-options-container button');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selectedIdx === q.ans) {
+                btnEl.classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
+                topicScore += 10;
+                fb.className = "p-4 rounded-2xl text-sm font-bold bg-emerald-100 text-emerald-800 border border-emerald-200";
+                fb.innerHTML = `✅ Benar! ${q.exp}`;
+            } else {
+                btnEl.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+                if (allBtns[q.ans]) {
+                    allBtns[q.ans].classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
+                }
+                fb.className = "p-4 rounded-2xl text-sm font-bold bg-rose-100 text-rose-900 border border-rose-200";
+                fb.innerHTML = `❌ Jawaban kamu belum tepat.<br>👉 <strong>Jawaban Benar:</strong> ${String.fromCharCode(65 + q.ans)}. ${q.opts[q.ans]}<br>ℹ️ Pembahasan: ${q.exp}`;
+            }
+            document.getElementById('quiz-score-badge').textContent = `Skor: ${topicScore}`;
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            const questions = topicQuestionBank[currentTopic];
+            currentTopicIdx++;
+            if (currentTopicIdx < questions.length) {
+                loadTopicQuestion();
+            } else {
+                alert(`Topik selesai! Skor ${studentName}: ${topicScore}`);
+            }
+        }
+
+        // --- Simulation Mode Logic (3 Nyawa / Lives System) ---
+        const simQuestions = [
+            ...topicQuestionBank.vocab,
+            ...topicQuestionBank.time,
+            ...topicQuestionBank.reading
+        ];
+
+        let simIdx = 0;
+        let simScore = 0;
+        let simLives = 3;
+        let simTimerInterval = null;
+        let timeLeft = 1200; // 20 mins
+
+        function renderLivesUI() {
+            const livesBox = document.getElementById('sim-lives-container');
+            if (livesBox) {
+                let heartsHtml = '';
+                for (let i = 0; i < 3; i++) {
+                    if (i < simLives) {
+                        heartsHtml += '❤️ ';
+                    } else {
+                        heartsHtml += '🖤 ';
+                    }
+                }
+                livesBox.innerHTML = heartsHtml;
+            }
+        }
+
+        function startSimulasi() {
+            updateStudentNameDisplays();
+            document.getElementById('sim-intro').classList.add('hidden');
+            document.getElementById('sim-result').classList.add('hidden');
+            document.getElementById('sim-active').classList.remove('hidden');
+
+            simIdx = 0;
+            simScore = 0;
+            simLives = 3;
+            timeLeft = 1200;
+            renderLivesUI();
+
+            clearInterval(simTimerInterval);
+
+            simTimerInterval = setInterval(() => {
+                timeLeft--;
+                const mins = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+                const secs = (timeLeft % 60).toString().padStart(2, '0');
+                document.getElementById('sim-timer').textContent = `${mins}:${secs}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(simTimerInterval);
+                    finishSimulasi(false);
+                }
+            }, 1000);
+
+            loadSimQuestion();
+        }
+
+        function loadSimQuestion() {
+            const q = simQuestions[simIdx];
+            document.getElementById('sim-counter').textContent = `Soal ${simIdx + 1} dari ${simQuestions.length}`;
+            document.getElementById('sim-question-text').textContent = q.q;
+
+            const container = document.getElementById('sim-options-container');
+            container.innerHTML = '';
+            document.getElementById('sim-feedback-box').classList.add('hidden');
+            document.getElementById('sim-next-btn').classList.add('hidden');
+
+            q.opts.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 font-medium text-slate-700 transition flex justify-between items-center";
+                btn.innerHTML = `<span><strong class="text-indigo-600 mr-2">${String.fromCharCode(65 + idx)}.</strong> ${opt}</span>`;
+                btn.onclick = () => selectSimAnswer(idx, q, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectSimAnswer(selectedIdx, q, btnEl) {
+            const fbBox = document.getElementById('sim-feedback-box');
+            fbBox.classList.remove('hidden');
+
+            const allBtns = document.querySelectorAll('#sim-options-container button');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selectedIdx === q.ans) {
+                simScore += (100 / simQuestions.length);
+                btnEl.classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
+                fbBox.className = "p-4 rounded-2xl text-sm font-bold bg-emerald-100 text-emerald-800 border border-emerald-200";
+                fbBox.innerHTML = `✅ Jawaban Benar! ${q.exp}`;
+            } else {
+                simLives--;
+                renderLivesUI();
+
+                btnEl.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+                if (allBtns[q.ans]) {
+                    allBtns[q.ans].classList.add('bg-emerald-100', 'border-emerald-400', 'text-emerald-900');
+                }
+
+                if (simLives <= 0) {
+                    fbBox.className = "p-4 rounded-2xl text-sm font-bold bg-rose-100 text-rose-900 border border-rose-200";
+                    fbBox.innerHTML = `💥 Nyawa kamu habis (0/3)!<br>👉 <strong>Jawaban Benar:</strong> ${String.fromCharCode(65 + q.ans)}. ${q.opts[q.ans]}<br>ℹ️ Pembahasan: ${q.exp}`;
+                    document.getElementById('sim-next-btn').textContent = "Lihat Hasil Simulasi ➔";
+                    document.getElementById('sim-next-btn').classList.remove('hidden');
+                    return;
+                } else {
+                    fbBox.className = "p-4 rounded-2xl text-sm font-bold bg-rose-100 text-rose-900 border border-rose-200";
+                    fbBox.innerHTML = `❌ Jawaban Kurang Tepat. (Sisa Nyawa: ${simLives}/3)<br>👉 <strong>Jawaban Benar:</strong> ${String.fromCharCode(65 + q.ans)}. ${q.opts[q.ans]}<br>ℹ️ Pembahasan: ${q.exp}`;
+                }
+            }
+
+            document.getElementById('sim-next-btn').textContent = "Lanjut ke Soal Berikutnya ➔";
+            document.getElementById('sim-next-btn').classList.remove('hidden');
+        }
+
+        function nextSimQuestion() {
+            if (simLives <= 0) {
+                finishSimulasi(true);
+                return;
+            }
+
+            simIdx++;
+            if (simIdx < simQuestions.length) {
+                loadSimQuestion();
+            } else {
+                finishSimulasi(false);
+            }
+        }
+
+        function finishSimulasi(gameOver) {
+            clearInterval(simTimerInterval);
+            document.getElementById('sim-active').classList.add('hidden');
+            document.getElementById('sim-result').classList.remove('hidden');
+
+            const finalScore = Math.round(simScore);
+            document.getElementById('sim-result-student-name').textContent = studentName;
+            document.getElementById('sim-final-score').textContent = `${finalScore} / 100`;
+
+            const resIcon = document.getElementById('sim-result-icon');
+            const resTitle = document.getElementById('sim-result-title');
+            const evalText = document.getElementById('sim-eval-text');
+
+            if (gameOver) {
+                resIcon.textContent = "💔";
+                resTitle.textContent = "Simulasi Berakhir (Nyawa Habis)";
+                evalText.textContent = `Tetap semangat, ${studentName}! Kamu bisa mempelajari lagi materi audio & spelling lalu coba lagi!`;
+            } else {
+                resIcon.textContent = "🏆";
+                resTitle.textContent = "Hasil Simulasi Latihan Ujian";
+                if (finalScore >= 80) {
+                    evalText.textContent = `🥇 Luar biasa, ${studentName}! Kamu mendapatkan skor Sangat Baik!`;
+                } else if (finalScore >= 60) {
+                    evalText.textContent = `🥈 Bagus sekali, ${studentName}! Teruskan berlatih untuk hasil sempurna!`;
+                } else {
+                    evalText.textContent = `🥉 Tetap semangat, ${studentName}! Pelajari lagi materi & audio lalu coba lagi!`;
+                }
+            }
+        }
+
+        // Initialize defaults on load
+        window.onload = function() {
+            updateStudentNameDisplays();
+        };
+    </script>
+</body>
+</html>
